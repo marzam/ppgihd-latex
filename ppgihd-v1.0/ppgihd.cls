@@ -63,28 +63,29 @@
 \newcommand*{\eg}{\textit{e.g.}\@\xspace}
 \newcommand*{\ie}{\textit{i.e.}\@\xspace}
 
-\def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
-	\refstepcounter{chapter}%
-	\typeout{\@chapapp\space\thechapter.}%
-	\addcontentsline{toc}{chapter}%
-	{\protect\numberline{\thechapter}#1}%
+\def\@chapter[#1]#2{
+	\ifnum \c@secnumdepth >\m@ne
+		\refstepcounter{chapter}%
+		\typeout{\@chapapp\space\thechapter.}%
+		\addcontentsline{toc}{chapter}{\bfseries\thechapter~{#1}}
+		%{\protect\numberline{\thechapter}#1}%
 	\else
-	\addcontentsline{toc}{chapter}{\bfseries\thechapter~{#1}}%
+		\addcontentsline{toc}{chapter}{#1}%
 	\fi
-	% \addcontentsline{toc}{chapter}{\uppercase{\listtablename}} 
-	
 	\chaptermark{#1}%
 	\addtocontents{lof}{\protect\addvspace{10\p@}}%
 	\addtocontents{lot}{\protect\addvspace{10\p@}}%
 	\if@twocolumn
-	\@topnewpage[\@makechapterhead{#2}]%
+		\@topnewpage[\@makechapterhead{#2}]%
 	\else
-	\@makechapterhead{#2}%
-	\@afterheading
+		\@makechapterhead{#2}%
+		\@afterheading
 	\fi}
 
 
-\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thechapter}{
+	\Roman{chapter}
+}
 %\renewcommand{\thechapter}{\Roman{chapter}}
 %\renewcommand \thechapter {\@arabic\c@chapter}
 \renewcommand \thesection {\@arabic\c@chapter.\@arabic\c@section}
@@ -353,21 +354,31 @@
 
 \renewcommand\@dotsep{10000}
 
-
-%\newcommand{\titlepageadvisorinfo}{%
-%  \@ifundefined{@advisor}{}{\vfill\@advisor\\\advisorname}
-%  \@ifundefined{@coadvisor}{}{\\[6ex]\@coadvisor\\\coadvisorname}
-%}
 %=====================================================================
-% Palavras-chave e key words
+% Agradecimentos (thanks)
 %=====================================================================
-
-%\renewcommand{\Palavraschave}[3]{
-%  \textbf{Palavras-chave:} #1. #2. #3.
+\newcommand{\makethanks}[1] {
+	\newpage
+	\begin{center}
+		\textbf{AGRADECIMENTOS} \linebreak
+	\end{center}
+	\renewcommand{\baselinestretch}{1.5}
+	\normalsize
+	{#1}
+	\linebreak
+	\pagebreak
+}
+%\newcommand{thanks}[1]{%
+%	\begin{center}
+%		\textbf{AGRADECIMENTOS} \linebreak
+%	\end{center}
+%	\renewcommand{\baselinestretch}{1.5}
+%	\normalsize
+%	{#1}
+%	\linebreak
 %}
-
-%\renewcommand{\Keywords}[3]{
-%  \textbf{Key words:} #1. #2. #3.
+%{
+%	\pagebreak
 %}
 %=====================================================================
 % Resumo (abstract) e Abstract (englishabstract)
